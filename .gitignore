@@ -4,5 +4,6 @@ artifacts/
 cache/
 package-lock.json
 .env
+.openzeppelin
 yarn.lock
 
