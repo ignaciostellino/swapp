@@ -24,12 +24,12 @@ describe("ToolV2", () => {
   before(async () => {
     [user, recipient] = await ethers.getSigners();
 
-    const Dex = await ethers.getContractFactory("ToolV1");
-    dex = await upgrades.deployProxy(Dex, [recipient.address, Uniswap, Balancer]);
+    const ToolV1 = await ethers.getContractFactory("ToolV1");
+    dex = await upgrades.deployProxy(ToolV1, [recipient.address, Uniswap, Balancer]);
     await dex.deployed();
     
-    const DexV2 = await ethers.getContractFactory("ToolV2");
-    dex = await upgrades.upgradeProxy(dex.address, DexV2);
+    const ToolV2 = await ethers.getContractFactory("ToolV2");
+    dex = await upgrades.upgradeProxy(dex.address, ToolV2);
     console.log("dexv2 upgraded", dex.address);
 
     uniswap = await Roter02.at(Uniswap);

@@ -71,49 +71,49 @@ describe("ToolV1", () => {
     );
   });
 
-//   it("Should swap several tokens", async () => {
-//     let etherAmount = "1";
-//     let toToken = [USDC, USDT, UNI, DAI, ALBT];
-//     let porcToken = [10, 20, 30, 20, 20];
-//     let amounts = [];
-//     for (let i = 0; i < toToken.length; i++) {
-//       let eth = (parseInt(web3.utils.toWei(etherAmount)) * porcToken[i]) / 100;
-//       let x = await uniswap.getAmountsOut(String(eth), [WETH, toToken[i]]);
-//       amounts.push(String(x[1]));
-//     }
-//     const albt = await ERC20.at(ALBT);
-//     const usdc = await ERC20.at(USDC);
-//     const usdt = await ERC20.at(USDT);
-//     const uni = await ERC20.at(UNI);
-//     const dai = await ERC20.at(DAI);
+  it("Should swap several tokens", async () => {
+    let etherAmount = "10";
+    let toToken = [USDC, USDT, UNI, DAI, ALBT];
+    let porcToken = [10, 20, 30, 20, 20];
+    let amounts = [];
+    for (let i = 0; i < toToken.length; i++) {
+      let eth = (parseInt(web3.utils.toWei(etherAmount)) * porcToken[i]) / 100;
+      let x = await uniswap.getAmountsOut(String(eth), [WETH, toToken[i]]);
+      amounts.push(String(x[1]));
+    }
+    const albt = await ERC20.at(ALBT);
+    const usdc = await ERC20.at(USDC);
+    const usdt = await ERC20.at(USDT);
+    const uni = await ERC20.at(UNI);
+    const dai = await ERC20.at(DAI);
 
-//     let prevBalancealbt = await albt.balanceOf(user.address);
-//     let prevBalanceusdc = await usdc.balanceOf(user.address);
-//     let prevBalanceusdt = await usdt.balanceOf(user.address);
-//     let prevBalanceuni = await uni.balanceOf(user.address);
-//     let prevBalancedai = await dai.balanceOf(user.address);
-//     let prevBalanceRecipient = await recipient.getBalance();
+    let prevBalancealbt = await albt.balanceOf(user.address);
+    let prevBalanceusdc = await usdc.balanceOf(user.address);
+    let prevBalanceusdt = await usdt.balanceOf(user.address);
+    let prevBalanceuni = await uni.balanceOf(user.address);
+    let prevBalancedai = await dai.balanceOf(user.address);
+    let prevBalanceRecipient = await recipient.getBalance();
 
-//     await toolv1
-//       .connect(user)
-//       .makeMultiSwap(toToken, porcToken, amounts, {
-//         value: web3.utils.toWei(etherAmount),
-//       });
+    await toolv1
+      .connect(user)
+      .makeMultiSwap(toToken, porcToken, amounts, {
+        value: web3.utils.toWei(etherAmount),
+      });
 
-//     let postBalancealbt = await albt.balanceOf(user.address);
-//     let postBalanceusdc = await usdc.balanceOf(user.address);
-//     let postBalanceusdt = await usdt.balanceOf(user.address);
-//     let postBalanceuni = await uni.balanceOf(user.address);
-//     let postBalancedai = await dai.balanceOf(user.address);
-//     let postBalanceRecipient = await recipient.getBalance();
+    let postBalancealbt = await albt.balanceOf(user.address);
+    let postBalanceusdc = await usdc.balanceOf(user.address);
+    let postBalanceusdt = await usdt.balanceOf(user.address);
+    let postBalanceuni = await uni.balanceOf(user.address);
+    let postBalancedai = await dai.balanceOf(user.address);
+    let postBalanceRecipient = await recipient.getBalance();
 
-//     assert(
-//       Number(prevBalancealbt) < Number(postBalancealbt) &&
-//         Number(prevBalanceusdc) < Number(postBalanceusdc) &&
-//         Number(prevBalanceusdt) < Number(postBalanceusdt) &&
-//         Number(prevBalanceuni) < Number(postBalanceuni) &&
-//         Number(prevBalancedai) < Number(postBalancedai) &&
-//         Number(prevBalanceRecipient) < Number(postBalanceRecipient)
-//     );
-//   });
+    assert(
+      Number(prevBalancealbt) < Number(postBalancealbt) &&
+        Number(prevBalanceusdc) < Number(postBalanceusdc) &&
+        Number(prevBalanceusdt) < Number(postBalanceusdt) &&
+        Number(prevBalanceuni) < Number(postBalanceuni) &&
+        Number(prevBalancedai) < Number(postBalancedai) &&
+        Number(prevBalanceRecipient) < Number(postBalanceRecipient)
+    );
+  });
 });
