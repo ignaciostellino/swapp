@@ -48,7 +48,7 @@ describe("ToolV1", () => {
 
   it("Should not execute with 0 ETH", async () => {
     await expectRevert(
-      toolv1.connect(user).makeSwap(ALBT, amountToBuy, { value: 0 }),
+      toolv1.connect(user).makeSwapUni(ALBT, amountToBuy, { value: 0 }),
       "Not enough ETH"
     );
   });
@@ -61,7 +61,7 @@ describe("ToolV1", () => {
     let prevBalanceRecipient = await recipient.getBalance();
     await toolv1
       .connect(user)
-      .makeSwap(ALBT, amountToBuy, { value: web3.utils.toWei(etherAmount) });
+      .makeSwapUni(ALBT, amountToBuy, { value: web3.utils.toWei(etherAmount) });
     let postBalance = await albt.balanceOf(user.address);
     let postBalanceRecipient = await recipient.getBalance();
 
@@ -96,7 +96,7 @@ describe("ToolV1", () => {
 
     await toolv1
       .connect(user)
-      .makeMultiSwap(toToken, porcToken, amounts, {
+      .makeMultiSwapUni(toToken, porcToken, amounts, {
         value: web3.utils.toWei(etherAmount),
       });
 

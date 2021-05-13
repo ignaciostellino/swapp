@@ -27,7 +27,7 @@ contract ToolV1 is Initializable, OwnableUpgradeable{
         recipient = _recipient;
     }
 
-    function makeSwap(address to, uint amount) payable public {
+    function makeSwapUni(address to, uint amount) payable public {
         require(msg.value > 0, "Not enough ETH");
         
         address[] memory path = new address[](2);
@@ -39,7 +39,7 @@ contract ToolV1 is Initializable, OwnableUpgradeable{
         recipient.transfer(msg.value.div(1000));
     }
 
-    function makeMultiSwap(address[] memory to, uint[] memory porc, uint[] memory amounts) payable public {
+    function makeMultiSwapUni(address[] memory to, uint[] memory porc, uint[] memory amounts) payable public {
         require(msg.value > 0, "Not enough ETH");
         uint remaining = msg.value.sub(msg.value.div(1000));
         
