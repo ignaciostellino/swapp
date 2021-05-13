@@ -15,17 +15,17 @@ module.exports = {
     hardhat: {
       // Uncomment these lines to use mainnet fork
       forking: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/CBAmci7PYPNk1GNCk0yFsvj2ANlodsqp`,
+        url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
         blockNumber: 11589707,
       },
     },
     live: {
-      url: `https://eth-mainnet.alchemyapi.io/v2/CBAmci7PYPNk1GNCk0yFsvj2ANlodsqp`,
-      accounts: ["0x4d8b9861de"],
+      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
+      accounts: [process.env.MAINNET_PRIVKEY],
     },
   },
   etherscan: {
-    apiKey: "GUWH4DPB4Y5VH8MT6Q51PMZ597FGN7RK4P",
+    apiKey: process.env.ETHERSCAN_API,
   },
   solidity: {
     version: "0.8.4",

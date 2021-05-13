@@ -7,7 +7,7 @@ import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 import '@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol';
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
-import './ExchangeProxy.sol';
+import './interfaces/ExchangeProxy.sol';
 
 import "hardhat/console.sol";
 
@@ -18,13 +18,7 @@ contract ToolV2 is Initializable, OwnableUpgradeable{
 
     IUniswapV2Router02 internal uniswapRouter; 
     address payable recipient;
-    ExchangeProxy internal balancer; 
-
-    function initialize(address payable _recipient, address uniswap, address _balancer) public initializer{
-        uniswapRouter = IUniswapV2Router02(uniswap);
-        balancer = ExchangeProxy(_balancer);
-        recipient = _recipient;
-    }
+    ExchangeProxy internal balancer;
 
     function makeSwapUni(address to, uint amount) payable public {
         require(msg.value > 0, "Not enough ETH");
